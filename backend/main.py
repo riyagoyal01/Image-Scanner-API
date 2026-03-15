@@ -6,8 +6,16 @@ import json
 
 from scanner import scan_image
 from extractor import extract
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 UPLOAD_FOLDER = "uploads"
 RESULT_FILE = "results.json"
