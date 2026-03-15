@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Scanner</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-hex">⬡</div>
+        <span>ImgScan</span>
+      </div>
+      <span class="header-badge">OCR · Emails · Phones · URLs</span>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="uploadSection">
+      <div class="eyebrow">01 — UPLOAD IMAGE</div>
+      <h1 class="hero">Drop an image.<br><em>We'll read it.</em></h1>
+
+      <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" hidden />
+
+        <div id="idleState">
+          <svg class="upload-arrow" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 4v24M20 4L10 14M20 4l10 10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 30v5h30v-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="drop-primary">Drag &amp; drop your image here</p>
+          <p class="drop-secondary">or <button class="link-btn" id="browseBtn">browse files</button></p>
+          <p class="drop-hint">PNG · JPG · JPEG · WEBP</p>
+        </div>
+
+        <div id="previewState" class="hidden">
+          <img id="previewImg" src="" alt="preview" />
+          <div class="preview-info">
+            <p class="preview-name" id="previewName"></p>
+            <p class="preview-size" id="previewSize"></p>
+            <button class="link-btn small" id="changeBtn">Change image</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-scan" id="scanBtn" disabled>
+        Scan Image <span class="btn-arrow">→</span>
+      </button>
+    </section>
+
+    <section id="loadingSection" class="hidden panel-center">
+      <div class="spinner">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+      </div>
+      <p class="loading-title" id="loadingTitle">Running OCR…</p>
+      <div class="loading-steps">
+        <span class="lstep active" id="lstep1">Extracting text</span>
+        <span class="lstep-arrow">›</span>
+        <span class="lstep" id="lstep2">Detecting patterns</span>
+        <span class="lstep-arrow">›</span>
+        <span class="lstep" id="lstep3">Done</span>
+      </div>
+    </section>
+
+    <section id="resultsSection" class="hidden">
+      <div class="eyebrow">02 — RESULTS</div>
+      <h2 class="results-headline" id="resultsHeadline"></h2>
+
+      <div class="cards" id="cardsGrid">
+
+        <div class="card" id="emailCard">
+          <div class="card-top">
+            <div class="card-icon email-accent">✉</div>
+            <div>
+              <p class="card-label">Emails</p>
+              <p class="card-count" id="emailCount">—</p>
+            </div>
+          </div>
+          <ul class="item-list" id="emailList"></ul>
+          <p class="no-data hidden" id="emailNone">No email addresses detected.</p>
+        </div>
+
+        <div class="card" id="phoneCard">
+          <div class="card-top">
+            <div class="card-icon phone-accent">☎</div>
+            <div>
+              <p class="card-label">Phone Numbers</p>
+              <p class="card-count" id="phoneCount">—</p>
+            </div>
+          </div>
+          <ul class="item-list" id="phoneList"></ul>
+          <p class="no-data hidden" id="phoneNone">No phone numbers detected.</p>
+        </div>
+
+        <div class="card" id="urlCard">
+          <div class="card-top">
+            <div class="card-icon url-accent">⬡</div>
+            <div>
+              <p class="card-label">URLs</p>
+              <p class="card-count" id="urlCount">—</p>
+            </div>
+          </div>
+          <ul class="item-list" id="urlList"></ul>
+          <p class="no-data hidden" id="urlNone">No URLs detected.</p>
+        </div>
+
+      </div>
+
+      <div class="all-empty hidden" id="allEmpty">
+        <span class="empty-glyph">◌</span>
+        <p class="empty-title">Nothing found</p>
+        <p class="empty-sub">The image was scanned successfully, but no emails, phone numbers, or URLs were detected in the text.</p>
+      </div>
+
+      <button class="btn-reset" id="resetBtn">← Scan another image</button>
+    </section>
+
+    <div class="toast hidden" id="toast">
+      <span class="toast-icon">⚠</span>
+      <span id="toastMsg">Something went wrong.</span>
+      <button class="toast-close" id="toastClose">✕</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Image Scanner API &nbsp;·&nbsp; FastAPI + Tesseract OCR</p>
+    <p class="footer-ep">POST &nbsp;<code>http://localhost:8000/scan</code></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
