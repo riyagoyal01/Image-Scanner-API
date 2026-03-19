@@ -4,9 +4,9 @@ RUN apt-get update && apt-get install -y tesseract-ocr && rm -rf /var/lib/apt/li
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY backend/ .
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
