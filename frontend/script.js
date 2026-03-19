@@ -292,7 +292,7 @@ scanBtn.addEventListener("click", async () => {
     showPanel("upload");
 
     if (err.message.includes("Failed to fetch") || err.message.includes("NetworkError")) {
-      showToast("Cannot reach the backend. Make sure the FastAPI server is running on http://localhost:8000.");
+      showToast("Cannot reach the backend. The server may be waking up — please wait 30 seconds and try again.");
     } else {
       showToast(err.message || "An unexpected error occurred.");
     }
