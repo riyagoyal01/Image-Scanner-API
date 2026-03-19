@@ -5,7 +5,7 @@
    Response         : { "Phone": [], "Email": [], "URLs": [] }
    ================================================ */
 
-const API_URL = "http://localhost:8000/scan";
+const API_URL = "https://image-scanner-api-gihl.onrender.com/scan";
 
 // ── DOM refs ───────────────────────────────────────────────────────────────
 const fileInput     = document.getElementById("fileInput");
