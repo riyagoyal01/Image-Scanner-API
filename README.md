@@ -2,7 +2,7 @@
 
 A full-stack web application that extracts text from images using OCR and detects **emails**, **phone numbers**, and **URLs** from the extracted text.
 
-**Live Demo:** [https://chimerical-kangaroo-e33df4.netlify.app](https://chimerical-kangaroo-e33df4.netlify.app)
+**Live Demo:** https://image-scanner-api.vercel.app
 
 ---
 
@@ -43,7 +43,7 @@ Image-Scanner-API/
 | Frontend | HTML, CSS, JavaScript |
 | Containerization | Docker |
 | Backend Hosting | Render (free tier) |
-| Frontend Hosting | Netlify (free tier) |
+| Frontend Hosting | Vercel (free tier) |
 
 ---
 
@@ -104,10 +104,10 @@ Frontend runs at: `http://localhost:5500`
 
 | Service | Platform | URL |
 |---|---|---|
-| Frontend | Netlify | [chimerical-kangaroo-e33df4.netlify.app](https://chimerical-kangaroo-e33df4.netlify.app) |
+| Frontend | Vercel  | [image-scanner-api.vercel.app](https://image-scanner-api.vercel.app) |
 | Backend | Render | Auto-deployed via Docker |
 
-- **Frontend** is connected to GitHub — auto-deploys on every `git push`
+- **Frontend** is deployed on Vercel — auto-deploys on every `git push`
 - **Backend** runs in a Docker container on Render with Tesseract pre-installed
 
 ---
